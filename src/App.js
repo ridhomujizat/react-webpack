@@ -1,73 +1,64 @@
-import React from "react";
+import React, { Component } from 'react'
 import "./style.css";
-import Header from './component/Header'
-import BodyChat from './layout/BodyChat/BodyChat'
+import Header from "./component/Header";
+import BodyChat from "./layout/BodyChat/BodyChat";
+import StickyButton from "./component/StickyButton/StickyButton";
+import MessageInput from './component/MessageInput/MessageInput';
 
-export default function App() {
-  const [typing, setTyping] = React.useState("");
-  const [message, setMessage] = React.useState([
-    { type: "admin", message: "Hallo ada yang bisa saya bantu?" },
-    { type: "me", message: "ada wkwkwkwkwk" },
-  ]);
-
-  const sendChat = () => {
-    const admin = typing.split("admin:");
-    const newMessage = message;
-    if (admin.length === 2) {
-      newMessage.push({ type: "admin", message: admin[1] });
-    } else {
-      newMessage.push({ type: "me", message: typing });
+export default class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            typing: "",
+            message: [],
+            open: false
+        }
     }
-    setMessage(newMessage);
-    setTyping("");
-    // message.push(typing)
-  };
-  return (
-    <>
-      <input className="chat-menu hidden" id="offchat-menu" type="checkbox" />
-      <div className="sticky-button" id="sticky-button">
-        <label htmlFor="offchat-menu">
-          <svg
-            className="chat-icon"
-            width="26"
-            height="26"
-            viewBox="0 0 28 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.3333 11.9167C17.3333 11.6293 17.2192 11.3538 17.016 11.1506C16.8128 10.9475 16.5373 10.8333 16.25 10.8333H9.74997C9.46265 10.8333 9.1871 10.9475 8.98394 11.1506C8.78077 11.3538 8.66664 11.6293 8.66664 11.9167C8.66664 12.204 8.78077 12.4795 8.98394 12.6827C9.1871 12.8859 9.46265 13 9.74997 13H16.25C16.5373 13 16.8128 12.8859 17.016 12.6827C17.2192 12.4795 17.3333 12.204 17.3333 11.9167ZM16.25 15.1667C16.5373 15.1667 16.8128 15.2808 17.016 15.484C17.2192 15.6871 17.3333 15.9627 17.3333 16.25C17.3333 16.5373 17.2192 16.8129 17.016 17.016C16.8128 17.2192 16.5373 17.3333 16.25 17.3333H11.9166C11.6293 17.3333 11.3538 17.2192 11.1506 17.016C10.9474 16.8129 10.8333 16.5373 10.8333 16.25C10.8333 15.9627 10.9474 15.6871 11.1506 15.484C11.3538 15.2808 11.6293 15.1667 11.9166 15.1667H16.25ZM23.8333 13C23.8328 10.6249 23.0517 8.31579 21.6103 6.42806C20.1689 4.54032 18.1471 3.17858 15.8561 2.55241C13.565 1.92624 11.1316 2.07034 8.93047 2.96254C6.72932 3.85474 4.88236 5.44558 3.67386 7.49024C2.46536 9.5349 1.96228 11.92 2.24206 14.2786C2.52184 16.6372 3.56897 18.8384 5.22229 20.5436C6.87561 22.2488 9.04349 23.3634 11.3923 23.7159C13.7411 24.0683 16.1406 23.6391 18.2216 22.4943L22.4336 23.777C22.6215 23.8342 22.8214 23.8393 23.0119 23.7917C23.2025 23.7441 23.3765 23.6456 23.5153 23.5067C23.6542 23.3678 23.7527 23.1938 23.8003 23.0033C23.8479 22.8128 23.8429 22.6129 23.7856 22.425L22.503 18.2065C23.3784 16.611 23.836 14.8199 23.8333 13V13ZM13 4.33333C14.5384 4.3332 16.0492 4.7426 17.3771 5.51949C18.705 6.29637 19.8022 7.41273 20.5559 8.7539C21.3097 10.0951 21.6928 11.6127 21.666 13.1509C21.6392 14.6892 21.2035 16.1926 20.4035 17.5067C20.3241 17.6372 20.2732 17.7831 20.2541 17.9347C20.2351 18.0863 20.2483 18.2402 20.293 18.3863L21.1228 21.1142L18.3993 20.2843C18.2527 20.2397 18.0983 20.2266 17.9463 20.246C17.7943 20.2655 17.6481 20.3169 17.5175 20.397C16.3752 21.0944 15.087 21.5177 13.7538 21.6339C12.4206 21.7501 11.0786 21.556 9.83293 21.0667C8.58729 20.5775 7.47187 19.8064 6.57411 18.8139C5.67634 17.8215 5.0206 16.6346 4.6583 15.3463C4.296 14.058 4.23697 12.7033 4.48584 11.3883C4.73471 10.0734 5.28472 8.83395 6.09276 7.76715C6.9008 6.70035 7.94491 5.83517 9.14328 5.23942C10.3416 4.64367 11.6617 4.33354 13 4.33333V4.33333Z"
-              fill="white"
-            />
-          </svg>
-          <svg className="close-icon" viewBox="0 0 512 512">
-            <path d="M278.6 256l68.2-68.2c6.2-6.2 6.2-16.4 0-22.6-6.2-6.2-16.4-6.2-22.6 0L256 233.4l-68.2-68.2c-6.2-6.2-16.4-6.2-22.6 0-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3l68.2 68.2-68.2 68.2c-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3 6.2 6.2 16.4 6.2 22.6 0l68.2-68.2 68.2 68.2c6.2 6.2 16.4 6.2 22.6 0 6.2-6.2 6.2-16.4 0-22.6L278.6 256z" />
-          </svg>
-        </label>
-      </div>
-      <div className="sticky-chat">
-        <div className="chat-content">
-          <Header />
-          <BodyChat data={message} />
-        </div>
-        <div className="chat-button">
-          <input
-            className="input-chat"
-            type="text"
-            value={typing}
-            placeholder="Ketik Pesan..."
-            onChange={(e) => {
-              e.preventDefault();
-              setTyping(e.target.value);
-            }}
-          />
-          <button className="button-chat" onClick={() => sendChat()}>
-            <svg viewBox="0 0 32 32">
-              <path d="M19.47,31a2,2,0,0,1-1.8-1.09l-4-7.57a1,1,0,0,1,1.77-.93l4,7.57L29,3.06,3,12.49l9.8,5.26,8.32-8.32a1,1,0,0,1,1.42,1.42l-8.85,8.84a1,1,0,0,1-1.17.18L2.09,14.33a2,2,0,0,1,.25-3.72L28.25,1.13a2,2,0,0,1,2.62,2.62L21.39,29.66A2,2,0,0,1,19.61,31Z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </>
-  );
+
+    componentDidMount(){
+      console.log("test")
+      this.setState({message: 
+        [
+          { type: "admin", message: "Hallo ada yang bisa saya bantu?" },
+          { type: "me", message: "ada wkwkwkwkwk", time: "12:00" },
+        ]
+      })
+    }
+    sendChat = () => {
+        const admin = this.state.typing.split("admin:");
+        const newMessage = this.state.message;
+        if (admin.length === 2) {
+          newMessage.push({ type: "admin", message: admin[1] });
+        } else {
+          newMessage.push({ type: "me", message: this.state.typing });
+        }
+        this.setState({message: newMessage, typing: ""});
+        // message.push(typing)
+      };
+    render() {
+        const {open, message, typing} = this.state
+        return (
+            <>
+              <input className="chat-menu hidden" id="offchat-menu" type="checkbox" />
+              <StickyButton onClick={() => this.setState({open: !open})} />
+              { (
+                <div className={`sticky-chat ${open && "open"}`}>
+                  <div className="chat-content">
+                    <Header />
+                    <BodyChat data={message} />
+                  </div>
+                  <MessageInput 
+                    onSendMessage={() => {
+                      this.sendChat()
+                    }}
+                    onChangeText={(val) => {
+                        this.setState({typing: val});
+                    }}
+                    value={typing}
+                  />
+                </div>
+              )}
+            </>
+          );
+    }
 }

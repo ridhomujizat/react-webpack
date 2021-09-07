@@ -1,7 +1,7 @@
 import React from "react";
 import './bubblechat.style.scss'
 
-export default function BubbleChat({ key, type, from, message, time }) {
+export default function BubbleChat({type, from, message, time }) {
   const typeMessage = () => {
     switch (type) {
       case "image":
@@ -11,7 +11,7 @@ export default function BubbleChat({ key, type, from, message, time }) {
     }
   };
   return (
-    <div key={String(key)} className={`wgchat-bubblechat ${type}`}>
+    <div className={`wgchat-bubblechat ${type}`}>
       {typeMessage()}
       <span>{time}</span>
     </div>
