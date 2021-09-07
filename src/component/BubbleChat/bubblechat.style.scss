@@ -1,0 +1,33 @@
+.wgchat-bubblechat {
+  margin: 7px;
+  display: inline-block;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #f0f5fb;
+  border-radius: 0px 15px 15px;
+
+  p {
+    margin: 0;
+  }
+
+  span {
+    width: 100%;
+    display: inline-block;
+    text-align: end;
+    right: 0;
+    margin-right: 10px;
+    font-size: 9px;
+    color: #989b9f;
+    margin: 7px 0 auto 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+  &.me {
+    background-color: #9be9ac;
+    margin: 7px 0 0 auto;
+    padding: 10px;
+    border-radius: 15px 0px 15px 15px;
+  }
+}
