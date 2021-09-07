@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   margin-top: 15px;
-  padding: 12px 20px;
+  padding: 12px 20px 12px 10px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
@@ -11,30 +11,74 @@
   font-family: "Roboto", sans-serif;
   font-weight: 400;
 
-  form {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;        
+  input[type=file]{
+    display: none;
+  }
+  button {
+    cursor: pointer;
+    display: flex;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+  }
 
-    svg {
+  svg{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+
+    &:hover{
+      fill: #505050;
+    }
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    .button-sendchat {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      width: auto;
+      svg {
         width: 20px;
         height: 20px;
         fill: #505050;
-        transform: rotate(40deg);
         -webkit-transform: rotate(40deg);
+        transform: rotate(40deg);
       }
-    
-      .button-sendchat {
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
-        width: auto;
-      }
-      .input-sendchat {
-        border: none;
-        outline: none;
-        flex-grow: 1;        
-      }
+    }
+    .input-sendchat {
+      border: none;
+      outline: none;
+      flex-grow: 1;
+    }
   }
 
+  .attach-sendchat{
+    display: flex;
+    padding: 5px;
+    margin-right: 5px;
+    background-color: #c5c1c1;
+    border-radius: 20px;
+    transition: width 0.5s;
+
+    &.open{
+      width: 72px;
+      button {
+        margin-right: 5px;
+      }
+    }
+
+    &.close{
+      width: 20px;
+    }
+  }
 }
