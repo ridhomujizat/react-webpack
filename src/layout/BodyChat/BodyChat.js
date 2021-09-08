@@ -7,6 +7,7 @@ export default function BodyChat({ data }) {
 
   React.useEffect(() => {
     scrollToButtom();
+    console.log("jalan")
   });
 
   const scrollToButtom = () => {

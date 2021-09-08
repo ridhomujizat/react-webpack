@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   module: {
@@ -26,15 +26,15 @@ module.exports = {
       {
         test: /\.(png|jpg|svg|jpeg|gif)$/i,
         use: [
-            {
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    path: path.resolve(__dirname, './src/assets/image'),
-                }
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              path: path.resolve(__dirname, "./src/assets/image"),
             },
+          },
         ],
-      }
+      },
     ],
   },
   devServer: {

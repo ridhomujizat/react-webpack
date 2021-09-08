@@ -1,0 +1,11 @@
+.rs-input {
+  margin: 10px 0;
+
+  &:focus {
+    border-color: rgb(100, 237, 111);
+  }
+  &:hover {
+    border-color: rgb(100, 237, 111);
+  }
+}
+

@@ -4,8 +4,11 @@ import Header from "./component/Header";
 import BodyChat from "./layout/BodyChat/BodyChat";
 import StickyButton from "./component/StickyButton/StickyButton";
 import MessageInput from "./component/MessageInput/MessageInput";
+import LoginChat from "./layout/LoginChat/Login";
+import ChatContex from "./context/ChatContext";
 
 export default class App extends Component {
+  static contextType = ChatContex;
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +19,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    console.log(this.context)
     this.setState({
       message: [
         { type: "admin", message: "Hallo ada yang bisa saya bantu?" },
@@ -35,28 +39,32 @@ export default class App extends Component {
     // message.push(typing)
   };
   render() {
-    const { open, message, typing } = this.state;
+    const { open, message, typing, login } = this.state;
     return (
       <>
         <input className="chat-menu hidden" id="offchat-menu" type="checkbox" />
         <StickyButton onClick={() => this.setState({ open: !open })} />
-        {
-          <div className={`sticky-chat ${open && "open"}`}>
-            <div className="chat-content">
+        <div className={`sticky-chat ${open && "open"}`}>
+          <div className="chat-content">
               <Header />
-              <BodyChat data={message} />
-            </div>
-            <MessageInput
-              onSendMessage={() => {
-                this.sendChat();
-              }}
-              onChangeText={(val) => {
-                this.setState({ typing: val });
-              }}
-              value={typing}
-            />
+              {this.context.login ? (
+                <>
+                  <BodyChat data={message} />
+                  <MessageInput
+                    onSendMessage={() => {
+                      this.sendChat();
+                    }}
+                    onChangeText={(val) => {
+                      this.setState({ typing: val });
+                    }}
+                    value={typing}
+                  />
+                </>
+              ) : (
+                <LoginChat />
+              )}
           </div>
-        }
+        </div>
       </>
     );
   }

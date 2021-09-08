@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import ChateState from "./context/ChatState";
 
 ReactDOM.render(
-    <App />,
-    document.getElementById("wgChat")
+  <ChateState>
+    <App />
+  </ChateState>,
+  document.getElementById("wgChat")
 );

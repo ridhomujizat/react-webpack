@@ -1,17 +1,16 @@
 .wgChat-messageinput {
   display: flex;
   align-items: center;
-  margin-top: 15px;
   padding: 12px 20px 12px 10px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   overflow: hidden;
   font-size: 12px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
 
-  input[type=file]{
+  input[type="file"] {
     display: none;
   }
   button {
@@ -22,17 +21,17 @@
     padding: 0;
   }
 
-  svg{
+  svg {
     cursor: pointer;
     width: 20px;
     height: 20px;
     fill: #fff;
-    -moz-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 
-    &:hover{
+    &:hover {
       fill: #505050;
     }
   }
@@ -56,13 +55,14 @@
       }
     }
     .input-sendchat {
+      background: transparent;
       border: none;
       outline: none;
       flex-grow: 1;
     }
   }
 
-  .attach-sendchat{
+  .attach-sendchat {
     display: flex;
     padding: 5px;
     margin-right: 5px;
@@ -70,15 +70,15 @@
     border-radius: 20px;
     transition: width 0.5s;
 
-    &.open{
-      width: 72px;
+    &.open {
+      width: 82px;
       button {
         margin-right: 5px;
       }
     }
 
-    &.close{
-      width: 20px;
+    &.close {
+      width: 30px;
     }
   }
 }
