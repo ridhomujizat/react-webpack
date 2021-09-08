@@ -1,12 +1,12 @@
-import { SET_LOGIN, CLEAR_LOGIN } from "./ChatTypes";
+import { SET_SESSION, CLEAR_SESSION } from "./ChatTypes";
 export default function ChatReducer(state, { type, payload }) {
   switch (type) {
-    case SET_LOGIN:
+    case SET_SESSION:
       return {
         ...state,
-        login: payload,
+        INF_token: payload,
       };
-    case SET_LOGIN:
+    case CLEAR_SESSION:
       return {
         ...state,
         login: false,

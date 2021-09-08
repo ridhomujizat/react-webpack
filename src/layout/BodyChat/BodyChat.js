@@ -28,7 +28,7 @@ export default function BodyChat({ data }) {
             key={index}
             message={val.message}
             type={val.type}
-            time={val.time}
+            time={val.time || "13.00"}
           />
         ))}
       </div>

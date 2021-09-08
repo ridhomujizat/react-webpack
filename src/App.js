@@ -19,7 +19,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    console.log(this.context)
+    console.log(this.context);
     this.setState({
       message: [
         { type: "admin", message: "Hallo ada yang bisa saya bantu?" },
@@ -40,29 +40,31 @@ export default class App extends Component {
   };
   render() {
     const { open, message, typing, login } = this.state;
+    const localToken = localStorage.getItem("INF_token");
+    console.log(localToken);
     return (
       <>
         <input className="chat-menu hidden" id="offchat-menu" type="checkbox" />
         <StickyButton onClick={() => this.setState({ open: !open })} />
         <div className={`sticky-chat ${open && "open"}`}>
           <div className="chat-content">
-              <Header />
-              {this.context.login ? (
-                <>
-                  <BodyChat data={message} />
-                  <MessageInput
-                    onSendMessage={() => {
-                      this.sendChat();
-                    }}
-                    onChangeText={(val) => {
-                      this.setState({ typing: val });
-                    }}
-                    value={typing}
-                  />
-                </>
-              ) : (
-                <LoginChat />
-              )}
+            <Header />
+            {this.context.INF_token || localToken ? (
+              <>
+                <BodyChat data={message} />
+                <MessageInput
+                  onSendMessage={() => {
+                    this.sendChat();
+                  }}
+                  onChangeText={(val) => {
+                    this.setState({ typing: val });
+                  }}
+                  value={typing}
+                />
+              </>
+            ) : (
+              <LoginChat />
+            )}
           </div>
         </div>
       </>

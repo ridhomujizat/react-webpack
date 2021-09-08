@@ -5,7 +5,7 @@ import BasicInput from "../../component/BasicInput";
 import { Formik, Form } from "formik";
 
 export default function Login() {
-  const { login, setLogin } = React.useContext(ChatContex);
+  const { createSession } = React.useContext(ChatContex);
   React.useEffect(() => {
     // console.log(login);
   });
@@ -21,7 +21,7 @@ export default function Login() {
         }
         }
         onSubmit={(values) => {
-          console.log(values)
+          createSession(values)
         }}
       >
         {({ errors, touched, values, handleChange, handleBlur, isValid }) => (

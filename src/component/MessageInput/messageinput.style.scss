@@ -71,14 +71,14 @@
     transition: width 0.5s;
 
     &.open {
-      width: 82px;
+      width: 72px;
       button {
         margin-right: 5px;
       }
     }
 
     &.close {
-      width: 30px;
+      width: 20px;
     }
   }
 }
